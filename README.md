@@ -28,7 +28,9 @@ Beginner in Java programming
 Beginner in building RESTful Web Services
 
 <b>Instructor</b>
+
 <b>Sergey Kargopolov</b>
+
 <b>Software developer</b>
 
 I have more than 20 years of experience in building different types of software. I started my career as an Entrepreneur with award-winning web projects and currently, I’m a Full Stack Developer with a passion for teaching beginner programmers to reach their goals and assisting them in the development of their applications.
