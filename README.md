@@ -1,4 +1,5 @@
-Description
+<b>Description</b>
+
 This is a very practical video course aimed at beginner Java developers to help them build their very first RESTful Java Web Service with JAX-RS and Jersey framework as well as implement features like: 
 
 User sign up, 
@@ -25,6 +26,8 @@ Please note that even though this video course covers all of the above mentioned
 Who this course is for:
 Beginner in Java programming
 Beginner in building RESTful Web Services
+
+
 Instructor
 Sergey Kargopolov
 Software developer
@@ -34,5 +37,5 @@ Follow me on Twitter, LinkedIn or Instagram to stay in touch.
 
 Happy learning!
 
-Requirements
+<b>Requirements</b>
 You should have beginner knowledge of Java language
