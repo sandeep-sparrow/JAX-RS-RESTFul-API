@@ -5,6 +5,7 @@ import com.appsdeveloperblog.app.ws.ui.model.CreateUserRequestModel;
 import com.appsdeveloperblog.app.ws.ui.model.response.UserProfileRest;
 import com.appsdeveloperblog.app.ws.service.UsersService;
 import com.appsdeveloperblog.app.ws.service.impl.UsersServiceImpl;
+import io.swagger.annotations.Api;
 import org.springframework.beans.BeanUtils;
 
 import javax.ws.rs.*;
@@ -16,6 +17,7 @@ import javax.ws.rs.core.MediaType;
  *
  */
 @Path("/users")
+@Api(value = "User Service")
 public class UsersEntryPoint {
 
     @POST
