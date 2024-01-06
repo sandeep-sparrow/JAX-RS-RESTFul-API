@@ -29,6 +29,29 @@ public class MySQLDAO implements DAO {
         session = sessionFactory.openSession();
     }
 
+
+    @Override
+    public UserDTO getUserByUserId(String userId) {
+        UserDTO userDTO = null;
+
+        CriteriaBuilder cb = session.getCriteriaBuilder();
+
+        // Create Criteria against a particular class
+        CriteriaQuery<UserEntity> criteria = cb.createQuery(UserEntity.class);
+
+        // Query root always reference entities
+        Root<UserEntity> profileRoot = criteria.from(UserEntity.class);
+        criteria.select(profileRoot);
+        criteria.where(cb.equal(profileRoot.get("userId"), userId));
+
+        // fetch single result
+        UserEntity userEntity = session.createQuery(criteria).getSingleResult();
+
+        userDTO = new UserDTO();
+        BeanUtils.copyProperties(userEntity, userDTO);
+        return userDTO;
+    }
+
     @Override
     public UserDTO getUserByUserName(String userName) {
         UserDTO userDTO = null;
@@ -42,6 +65,7 @@ public class MySQLDAO implements DAO {
 
         Query<UserEntity> query = session.createQuery(criteria);
         List<UserEntity> resultList = query.getResultList();
+
         if(resultList !=null && !resultList.isEmpty()){
             UserEntity userEntity = resultList.get(0);
             userDTO = new UserDTO();
@@ -73,6 +97,5 @@ public class MySQLDAO implements DAO {
             session.close();
         }
     }
-
 
 }

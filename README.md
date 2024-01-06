@@ -21,7 +21,7 @@ This video course also teaches how to install needed software on local computer 
 How to start up your own Linux server in Amazon cloud( AWS EC2),
 Install needed software on a remote EC2 instance and finally, 
 How deploy created WebService on AWS EC2 instance. 
-Please note that even though this video course covers all of the above mentioned, it is not a comprehensive guide that covers, in little details, all and everything about building Web Services. There are still things to be learned. But you will definitely benefit and gain by learning the above mentioned material. 
+Please note that even though this video course covers all the above-mentioned, it is not a comprehensive guide that covers, in little details, all and everything about building Web Services. There are still things to be learned. But you will definitely benefit and gain by learning the above-mentioned material. 
 
 Who this course is for:
 Beginner in Java programming

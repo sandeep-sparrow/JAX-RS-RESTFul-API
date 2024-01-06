@@ -10,8 +10,9 @@ import com.appsdeveloperblog.app.ws.shared.dto.UserDTO;
 public interface DAO {
 
     public void openConnection();
+    public UserDTO getUserByUserId(String userId);
     public UserDTO getUserByUserName(String userName);
-    UserDTO saveUser(UserDTO user);
+    public UserDTO saveUser(UserDTO user);
     public void closeConnection();
 
 }
