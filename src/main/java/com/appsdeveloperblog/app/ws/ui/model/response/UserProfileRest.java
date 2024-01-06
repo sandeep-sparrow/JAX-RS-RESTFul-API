@@ -10,11 +10,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class UserProfileRest {
 
+    private String userId;
     private String firstName;
     private String lastName;
     private String email;
     private String href;
-    private String userId;
 
     public String getFirstName() {
         return firstName;
