@@ -1,7 +1,7 @@
 package com.appsdeveloperblog.app.ws.ui.entrypoints;
 
 import com.appsdeveloperblog.app.ws.shared.dto.UserDTO;
-import com.appsdeveloperblog.app.ws.ui.model.CreateUserRequestModel;
+import com.appsdeveloperblog.app.ws.ui.model.request.CreateUserRequestModel;
 import com.appsdeveloperblog.app.ws.ui.model.response.UserProfileRest;
 import com.appsdeveloperblog.app.ws.service.UsersService;
 import com.appsdeveloperblog.app.ws.service.impl.UsersServiceImpl;
