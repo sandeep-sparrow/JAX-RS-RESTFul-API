@@ -75,7 +75,8 @@ public class UsersServiceImpl implements UsersService {
         return userDTO;
     }
 
-    private UserDTO getUserByUserName(String userName) {
+    @Override
+    public UserDTO getUserByUserName(String userName) {
         UserDTO userDTO = null;
 
         if(userName == null || userName.isEmpty()) {

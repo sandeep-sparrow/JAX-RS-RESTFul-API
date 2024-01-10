@@ -29,7 +29,6 @@ public class MySQLDAO implements DAO {
         session = sessionFactory.openSession();
     }
 
-
     @Override
     public UserDTO getUserByUserId(String userId) {
         UserDTO userDTO = null;
@@ -89,6 +88,15 @@ public class MySQLDAO implements DAO {
         BeanUtils.copyProperties(userEntity, returnValue);
 
         return returnValue;
+    }
+
+    @Override
+    public void updateUser(UserDTO user) {
+        UserEntity userEntity = new UserEntity();
+        BeanUtils.copyProperties(user, userEntity);
+        session.beginTransaction();
+        session.update(userEntity);
+        session.getTransaction().commit();
     }
 
     @Override

@@ -13,6 +13,7 @@ public interface DAO {
     public UserDTO getUserByUserId(String userId);
     public UserDTO getUserByUserName(String userName);
     public UserDTO saveUser(UserDTO user);
+    public void updateUser(UserDTO user);
     public void closeConnection();
 
 }

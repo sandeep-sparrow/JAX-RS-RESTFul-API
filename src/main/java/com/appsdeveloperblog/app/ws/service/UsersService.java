@@ -12,4 +12,6 @@ public interface UsersService {
     UserDTO createUser(UserDTO userDTO);
 
     UserDTO getUserByUserId(String userId);
+
+    UserDTO getUserByUserName(String userName);
 }
