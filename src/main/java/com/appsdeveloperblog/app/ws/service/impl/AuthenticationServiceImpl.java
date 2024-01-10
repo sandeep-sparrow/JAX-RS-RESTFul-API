@@ -78,12 +78,27 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
         userProfile.setToken(tokenToSaveToDatabase);
 
-        storeAccessToken(userProfile);
+        updateUserProfile(userProfile);
 
         return returnValue;
     }
 
-    private void storeAccessToken(UserDTO userProfile) {
+    @Override
+    public void resetSecurityCredentials(String password, UserDTO userProfile) {
+        // generate a new salt
+        UserProfileUtils userProfileUtils = new UserProfileUtils();
+        String salt = userProfileUtils.getSalt(30);
+
+        // generate secure password
+        String securePassword = userProfileUtils.generateSecurePassword(password, salt);
+        userProfile.setSalt(salt);
+        userProfile.setEncryptedPassword(securePassword);
+
+        // update user profile
+        updateUserProfile(userProfile);
+    }
+
+    private void updateUserProfile(UserDTO userProfile) {
         this.database = new MySQLDAO();
 
         // connect to database
