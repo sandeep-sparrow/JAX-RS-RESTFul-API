@@ -18,4 +18,6 @@ public interface UsersService {
     UserDTO getUserByUserName(String userName);
 
     List<UserDTO> getUsers(int start, int limit);
+
+    UserDTO updateUserDetails(UserDTO userDTO);
 }
