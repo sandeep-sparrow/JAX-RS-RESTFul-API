@@ -1,5 +1,6 @@
 package com.appsdeveloperblog.app.ws.ui.entrypoints;
 
+import com.appsdeveloperblog.app.ws.annotations.Secured;
 import com.appsdeveloperblog.app.ws.shared.dto.UserDTO;
 import com.appsdeveloperblog.app.ws.ui.model.request.CreateUserRequestModel;
 import com.appsdeveloperblog.app.ws.ui.model.response.UserProfileRest;
@@ -9,6 +10,8 @@ import org.springframework.beans.BeanUtils;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import java.util.ArrayList;
+import java.util.List;
 
 /*
  *
@@ -38,6 +41,7 @@ public class UsersEntryPoint {
         return returnValue; // Return back the user profile.
     }
 
+    @Secured
     @GET
     @Path("/{userId}")
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
@@ -50,5 +54,25 @@ public class UsersEntryPoint {
         BeanUtils.copyProperties(userDTO, returnValue);
 
         return returnValue;  // Return back the user profile.
+    }
+    
+    @GET
+    @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+    public List<UserProfileRest> getUsers(@DefaultValue("0") @QueryParam("start") int start,
+                                          @DefaultValue("50") @QueryParam("limit") int limit){
+
+        UsersService usersService = new UsersServiceImpl();
+        List<UserDTO> users = usersService.getUsers(start, limit);
+
+        // Prepare return value
+        List<UserProfileRest> returnValue  = new ArrayList<UserProfileRest>();
+
+        for(UserDTO user : users){
+            UserProfileRest userProfileRest = new UserProfileRest();
+            BeanUtils.copyProperties(user, userProfileRest);
+            userProfileRest.setHref("/users/" + user.getUserId());
+            returnValue.add(userProfileRest);
+        }
+        return returnValue;
     }
 }

@@ -2,6 +2,8 @@ package com.appsdeveloperblog.app.ws.service;
 
 import com.appsdeveloperblog.app.ws.shared.dto.UserDTO;
 
+import java.util.List;
+
 /*
  *
  * @author: Sandeep prajapati
@@ -14,4 +16,6 @@ public interface UsersService {
     UserDTO getUserByUserId(String userId);
 
     UserDTO getUserByUserName(String userName);
+
+    List<UserDTO> getUsers(int start, int limit);
 }

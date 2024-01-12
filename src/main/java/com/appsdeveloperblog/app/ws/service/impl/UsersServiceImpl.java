@@ -9,6 +9,8 @@ import com.appsdeveloperblog.app.ws.shared.dto.UserDTO;
 import com.appsdeveloperblog.app.ws.ui.model.response.ErrorMessages;
 import com.appsdeveloperblog.app.ws.utils.UserProfileUtils;
 
+import java.util.List;
+
 /*
  *
  * @author: Sandeep prajapati
@@ -92,6 +94,21 @@ public class UsersServiceImpl implements UsersService {
         }
 
         return userDTO;
+    }
+
+    @Override
+    public List<UserDTO> getUsers(int start, int limit) {
+        List<UserDTO> returnValue = null;
+
+        // Connect to database
+        try {
+            this.database.openConnection();
+            returnValue = this.database.getUsers(start, limit);
+        } finally {
+            this.database.closeConnection();
+        }
+
+        return returnValue;
     }
 
     private UserDTO saveUser(UserDTO user) {
