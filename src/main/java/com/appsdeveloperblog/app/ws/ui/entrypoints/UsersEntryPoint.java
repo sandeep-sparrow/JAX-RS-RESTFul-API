@@ -3,6 +3,7 @@ package com.appsdeveloperblog.app.ws.ui.entrypoints;
 import com.appsdeveloperblog.app.ws.annotations.Secured;
 import com.appsdeveloperblog.app.ws.shared.dto.UserDTO;
 import com.appsdeveloperblog.app.ws.ui.model.request.CreateUserRequestModel;
+import com.appsdeveloperblog.app.ws.ui.model.request.UpdateUserRequestModel;
 import com.appsdeveloperblog.app.ws.ui.model.response.UserProfileRest;
 import com.appsdeveloperblog.app.ws.service.UsersService;
 import com.appsdeveloperblog.app.ws.service.impl.UsersServiceImpl;
@@ -74,5 +75,33 @@ public class UsersEntryPoint {
             returnValue.add(userProfileRest);
         }
         return returnValue;
+    }
+
+    @PUT
+    @Path("/{userId}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+    public UserProfileRest updateUser(@PathParam("userId") String userId,
+                                      UpdateUserRequestModel userDetails){
+        UserProfileRest returnValue = new UserProfileRest();
+
+        UsersService userService = new UsersServiceImpl();
+
+        // Get Stored user
+        UserDTO storedUserDetails = userService.getUserByUserId(userId);
+
+        // set values
+        if(userDetails.getFirstName() != null && userDetails.getLastName() != null){
+            storedUserDetails.setFirstName(userDetails.getFirstName());
+            storedUserDetails.setLastName(userDetails.getLastName());
+        }
+
+        // Update User
+        UserDTO updatedUserProfile = userService.updateUserDetails(storedUserDetails);
+
+        // Prepare a response
+        BeanUtils.copyProperties(storedUserDetails, returnValue);
+
+        return returnValue; // Return back the user profile.
     }
 }

@@ -18,5 +18,4 @@ public interface DAO {
     public UserDTO saveUser(UserDTO user);
     public void updateUser(UserDTO user);
     public void closeConnection();
-
 }
