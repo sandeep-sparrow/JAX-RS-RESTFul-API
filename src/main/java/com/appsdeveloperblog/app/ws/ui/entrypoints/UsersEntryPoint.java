@@ -24,7 +24,7 @@ import java.util.List;
  */
 @Path("/users")
 public class UsersEntryPoint {
-*
+
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
