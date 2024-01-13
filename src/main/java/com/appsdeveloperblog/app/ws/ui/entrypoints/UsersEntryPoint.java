@@ -24,7 +24,7 @@ import java.util.List;
  */
 @Path("/users")
 public class UsersEntryPoint {
-
+*
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
@@ -60,6 +60,7 @@ public class UsersEntryPoint {
         return returnValue;  // Return back the user profile.
     }
 
+    @Secured
     @GET
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     public List<UserProfileRest> getUsers(@DefaultValue("0") @QueryParam("start") int start,
@@ -80,6 +81,7 @@ public class UsersEntryPoint {
         return returnValue;
     }
 
+    @Secured
     @PUT
     @Path("/{userId}")
     @Consumes(MediaType.APPLICATION_JSON)
@@ -108,6 +110,7 @@ public class UsersEntryPoint {
         return returnValue; // Return back the user profile.
     }
 
+    @Secured
     @DELETE
     @Path("/{userId}")
     @Consumes(MediaType.APPLICATION_JSON)
