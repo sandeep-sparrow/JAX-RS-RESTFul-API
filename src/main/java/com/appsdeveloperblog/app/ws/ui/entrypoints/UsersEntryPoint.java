@@ -4,6 +4,9 @@ import com.appsdeveloperblog.app.ws.annotations.Secured;
 import com.appsdeveloperblog.app.ws.shared.dto.UserDTO;
 import com.appsdeveloperblog.app.ws.ui.model.request.CreateUserRequestModel;
 import com.appsdeveloperblog.app.ws.ui.model.request.UpdateUserRequestModel;
+import com.appsdeveloperblog.app.ws.ui.model.response.DeleteUserProfileResponseModel;
+import com.appsdeveloperblog.app.ws.ui.model.response.RequestOperation;
+import com.appsdeveloperblog.app.ws.ui.model.response.ResponseStatus;
 import com.appsdeveloperblog.app.ws.ui.model.response.UserProfileRest;
 import com.appsdeveloperblog.app.ws.service.UsersService;
 import com.appsdeveloperblog.app.ws.service.impl.UsersServiceImpl;
@@ -56,7 +59,7 @@ public class UsersEntryPoint {
 
         return returnValue;  // Return back the user profile.
     }
-    
+
     @GET
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     public List<UserProfileRest> getUsers(@DefaultValue("0") @QueryParam("start") int start,
@@ -103,5 +106,27 @@ public class UsersEntryPoint {
         BeanUtils.copyProperties(storedUserDetails, returnValue);
 
         return returnValue; // Return back the user profile.
+    }
+
+    @DELETE
+    @Path("/{userId}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+    public DeleteUserProfileResponseModel deleteUser(@PathParam("userId") String userId){
+
+        DeleteUserProfileResponseModel returnValue = new DeleteUserProfileResponseModel();
+        returnValue.setRequestOperation(RequestOperation.DELETE);
+
+        UsersService usersService = new UsersServiceImpl();
+
+        // Get Stored user
+        UserDTO storedUserDetails = usersService.getUserByUserId(userId);
+
+        // Delete user
+        usersService.deleteUser(storedUserDetails);
+
+        returnValue.setResponseStatus(ResponseStatus.SUCCESS);
+
+        return returnValue;
     }
 }
