@@ -12,10 +12,19 @@ import java.util.List;
 public interface DAO {
 
     public void openConnection();
+
     public List<UserDTO> getUsers(int start, int limit);
+
     public UserDTO getUserByUserId(String userId);
+
     public UserDTO getUserByUserName(String userName);
+
     public UserDTO saveUser(UserDTO user);
+
     public void updateUser(UserDTO user);
+
     public void closeConnection();
+
+    public void deleteUser(UserDTO userDTO);
+
 }

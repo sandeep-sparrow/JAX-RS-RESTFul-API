@@ -20,4 +20,6 @@ public interface UsersService {
     List<UserDTO> getUsers(int start, int limit);
 
     UserDTO updateUserDetails(UserDTO userDTO);
+
+    void deleteUser(UserDTO userDTO);
 }

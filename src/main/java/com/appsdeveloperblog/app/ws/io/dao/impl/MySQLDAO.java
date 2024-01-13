@@ -127,6 +127,7 @@ public class MySQLDAO implements DAO {
     public void updateUser(UserDTO user) {
         UserEntity userEntity = new UserEntity();
         BeanUtils.copyProperties(user, userEntity);
+
         session.beginTransaction();
         session.update(userEntity);
         session.getTransaction().commit();
@@ -137,6 +138,16 @@ public class MySQLDAO implements DAO {
         if(session != null){
             session.close();
         }
+    }
+
+    @Override
+    public void deleteUser(UserDTO userDTO) {
+        UserEntity userEntity = new UserEntity();
+        BeanUtils.copyProperties(userDTO, userEntity);
+
+        session.beginTransaction();
+        session.delete(userEntity);
+        session.getTransaction().commit();
     }
 
 }
